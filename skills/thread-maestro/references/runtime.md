@@ -7,12 +7,12 @@ Read before promising automatic creation and before organizational changes. The 
 | Capability | Acceptable evidence | If unconfirmed |
 | --- | --- | --- |
 | The project matches the folder | Project listing with a verified path and real ID | Clarify the match; do not guess IDs |
-| A new folder can be registered as a project | An available registration tool with a suitable schema | Create the approved folder; ask the user to connect it in the UI, then verify |
+| A new folder can be registered as a project | An available registration tool with a suitable schema | Show the setup card; the user creates or chooses the folder and connects it, then verify before writing project files |
 | A separate user chat can be created in the project | A creation tool that selects a project | Prepare materials for manual setup |
 | Title and short role are supported | Documented parameters | Explain any remaining manual step |
 | Chats share the same folder | Local environment of the selected project, without copying | Do not substitute separate checkouts or worktrees |
 | History is independent | A new conversation without inherited history | Do not substitute a fork |
-| No first turn or automatic file reads | An explicit documented tool mode | Treat as unestablished; agree on an acknowledgment or use manual setup |
+| No first turn or automatic file reads | An explicit documented tool mode | Disclose acknowledgment in the final setup card and include it in the same confirmation, or use manual setup |
 | The source chat can join the project | A supported move and the user's permission | Offer a separate main chat with a brief summary |
 | Readiness and IDs can be verified | Creation result, listing, reading, or waiting | Disclose unverified details; do not invent readiness |
 
@@ -20,7 +20,7 @@ A missing schema parameter means this tool does not establish the capability; it
 
 ## When Codex app tools are available
 
-- `list_projects`: match the project and working folder; use the returned `projectId`. A sidebar section is not a project.
+- `list_projects`: match the project and working folder; use the returned `projectId`. After the final setup confirmation, verify this exact folder again, then proceed directly with the approved actions. Do not turn successful verification into another approval request. The checkbox or widget state is not proof of registration. If no match exists, explain the one missing user action and keep the approved plan. A sidebar section is not a project.
 - `list_threads`: include pinned and ordinary chats, project membership, and host. Expand incomplete samples or use available search and pagination; do not invent parameters. If a candidate is absent from the available sample, do not claim the search was exhaustive.
 - `read_thread`: clarify a candidate's role or state selectively; do not load every chat history.
 - `create_thread`: read the current schema. Where supported, use `target.type="project"`, the confirmed `projectId`, and `environment.type="local"`. Do not substitute worktree, projectless, or cloud for the shared local project. Supply the agreed title and short prompt. If `prompt` is required and no mode omitting the first turn is documented, do not promise an inactive chat. A prompt saying "wait" does not disable an automatic reply.
@@ -45,6 +45,6 @@ This indicates preparation, not confirmed readiness. For reused chats, use only 
 
 ## Recovery
 
-After an ambiguous response, match listed chat data by project, title, and attempt time where available. Similar titles alone are insufficient evidence. Record confirmed success before the next creation. Retry only a step known not to have completed. If the outcome cannot be established, keep "outcome unknown" and explain what needs checking.
+Use the creation ledger in [creation.md](creation.md) before each creation and record its result immediately. After an ambiguous response, match listed chat data by project, title, and attempt time where available. Similar titles alone are insufficient evidence. Record confirmed success before the next creation. Retry only a step known not to have completed. A returned temporary ID, ready ID, or uncertain outcome must not be treated as a missing chat. If the outcome cannot be established, keep "outcome unknown" and explain what needs checking. Resume the same approved revision with missing steps only; do not ask to approve that unchanged plan again.
 
 Do not edit internal app databases or service files to register projects, create chats, or bypass limitations. A Markdown map records real chats; it does not create them.

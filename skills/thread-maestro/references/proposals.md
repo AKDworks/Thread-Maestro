@@ -37,4 +37,4 @@ Embed the fragment using the host's documented mechanism. For `visualize`, use i
 visualize{"path":"/absolute/task-owned/path/chat-proposal.html"}
 ```
 
-Do not replace it with a link, browser tab, source code, or duplicate text table. After selection, request only missing setup details and remaining creation approvals. Do not ask to approve an unchanged structure again.
+Do not replace it with a link, browser tab, source code, or duplicate text table. After selection, follow [setup.md](setup.md) for the setup card and request only missing decisions. Do not ask to approve an unchanged structure again.

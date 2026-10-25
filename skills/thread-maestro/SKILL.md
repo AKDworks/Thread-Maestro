@@ -20,7 +20,7 @@ Help the user choose a chat structure, approve it, and prepare the workspace usi
 
 The default first reply is one short recommendation, a compact card diagram, and one question about the structure. Use the host's inline visualization when available, with a plain table as fallback. Read [references/proposals.md](references/proposals.md) when presenting a proposal. Keep analysis and tool checks internal; disclose only facts needed for the user's current decision. Explain setup details when they become actionable. Keep later replies brief too: report changed state and the next decision, expanding only when asked or needed for a material issue. Preserve any disclosure required by higher-priority instructions.
 
-During structure discussion, ask for feedback on the design rather than permission to execute. End the ordinary proposal after that question. Do not append skill names, instruction quotes, or explanations such as "Thread Maestro requires approval" merely to justify the discussion-first workflow. Keep the creation approval gate intact; provide any explanation required by higher-priority instructions when the relevant action actually needs approval.
+Use ordinary, direct language at every stage, including setup and connection checks. Do not append skill names, instruction quotes, or explanations such as "Thread Maestro requires approval" merely to justify a question. End normal replies after the useful question or next action. Keep actual approvals intact and preserve explanations required by higher-priority instructions; the skill cannot disable host policy.
 
 ## 1. Establish the starting point
 
@@ -44,13 +44,13 @@ The user may rename or regroup roles within these totals. For an unsupported cou
 
 Include the main chat for shared requirements and decisions in the total. Present it as one wide card above the specialist grid using [references/proposals.md](references/proposals.md). Three total means two specialist cards side by side; five means a 2-by-2 grid; seven means a 3-column, 2-row grid. Each card has a matching outline icon, title, and short scope description. Show verified reuse or material dependencies only when useful; keep the diagram a proposal rather than implying completion or automatic task dispatch. Do not duplicate it as a Markdown table or repeat every card in paragraphs.
 
-After the user selects a structure, resolve only missing setup decisions. Structure selection is not permission to create while location, project membership, or first-turn mode remains unresolved. If those details are already known, a single compact plan can cover both structure and creation. Before creation, the confirmed plan must cover:
+After structure selection, use the interactive setup plan in [references/setup.md](references/setup.md) to resolve missing location and connection details. Do not repeat the structure discussion or replace the setup card with a long checklist. Structure selection does not by itself approve unknown setup actions. If everything is already known, use a single compact confirmation. Before creation, the confirmed plan must cover:
 
 - Project name and shared folder; for a new project, the proposed path and registration step.
 - Which chat is the main one, total count, how many are reused, and how many are new.
 - Exact names, roles, dependencies, and suggested order of manual work.
 - Any proposed organizational files or changes to existing chats.
-- Available creation mode: no first turn, a separately approved acknowledgment, or manual setup.
+- Available creation mode: no first turn, a brief acknowledgment included in the setup confirmation, or manual setup.
 
 Surface these details at the creation decision, not as a checklist in every first response. Keep previously agreed details and ask only about unresolved choices.
 
@@ -60,7 +60,11 @@ Splitting topics can reduce irrelevant context, but does not guarantee token, us
 
 Ask the user to approve the displayed structure before creation. A general request to organize a project does not approve proposed titles, counts, and startup behavior. Do not ask again when this specific plan is already approved. Agree on material changes to composition, working folder, or startup mode before carrying them out.
 
-If creation starts a first turn, explain this **before creating chats**. Avoiding project work and avoiding any automatic reply are different conditions. Offer an acknowledgment with no extra file reads, commands, or changes, and obtain explicit consent to this mode. Consent may accompany plan approval if the user clearly accepts both. Silence or approval of the structure alone does not authorize this compromise.
+If creation starts a first turn, show that behavior in the setup card before its final confirmation button: a brief automatic role acknowledgment without extra file reads, tools, commands, changes, or development. The button confirms this behavior together with the displayed folder, files, and chats. Do not leave startup consent pending until after the folder is connected. Structure selection alone is not this final confirmation.
+
+After the user confirms that complete setup, verify the folder and project, then execute the approved actions directly. Do not propose the same chats again, request another creation or acknowledgment confirmation, or add a footer explaining the skill's approval rules. A connection check is verification, not a new approval stage. Ask again only for a material plan change or a genuine unresolved blocker; explain the practical issue briefly.
+
+Use the current revision and creation ledger in [references/creation.md](references/creation.md). Old cards and repeated confirmation messages must not start another copy of an approved setup. Check the entire plan, not only its count and titles.
 
 If the user declines the acknowledgment, prepare titles and starting texts for manual setup using [references/templates.md](references/templates.md). State that no chats were automatically created. Do not work around the limit with a hidden executor.
 
@@ -68,7 +72,7 @@ If the user declines the acknowledgment, prepare titles and starting texts for m
 
 After approval, perform only the agreed organizational actions.
 
-For a new project, create a folder without overwriting existing files. Register it as an app project using a supported tool if available. If the folder already exists, check its contents and suitability before using it. If registration is unavailable, explain the smallest required UI action. After the user completes it, verify the project and resume from the prepared state. Do not substitute unrelated projectless chats.
+For a new project requiring manual registration, follow [references/setup.md](references/setup.md): the user chooses or creates a folder and adds it to Codex first; verify its app registration before writing project documents or creating chats. Do not alternate between Codex creating files, a user registration step, and Codex creating chats. An automated bootstrap is appropriate only when supported and explicitly chosen in the plan. Reuse an existing suitable folder without overwriting its files. Never substitute unrelated projectless chats.
 
 Use one project and one shared working folder. Do not create copies or Git worktrees by default. Set a model or reasoning override only when explicitly requested and supported by the tools.
 
@@ -92,4 +96,4 @@ File overlap between roles is allowed. Explain dependencies and edit order; the 
 
 After creation, verify each new chat's existence, title, project membership, and completion of any acknowledgment as far as tools allow. Follow [references/runtime.md](references/runtime.md). Distinguish observed results from behavior inferred from tool descriptions.
 
-Finish with a brief report: chats created and reused, anything missing or unknown, shared folder and documents, suggested manual work order, remaining limits, and required user action. Provide supported opening links or UI elements with real IDs. Workspace organization is not completion of the project's tasks.
+For success, finish with one short sentence giving the verified number created and, if relevant, reused, followed by supported opening elements with real IDs. Do not repeat roles, settings, paths, limits, or approval explanations. For partial success, give the actual count and only the remaining practical issue. Never call setup complete while creation or acknowledgment is unverified. Workspace organization is not completion of the project's tasks.

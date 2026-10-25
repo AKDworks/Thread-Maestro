@@ -16,6 +16,10 @@ Invoke the skill and describe what you want to build. Codex recommends 3, 5, or 
 
 You can choose another of these three layouts. The skill updates the cards, then helps set up the project after approval. Seven is the largest layout supported by this skill.
 
+The setup view offers a suggested folder or a path of your own. If the folder needs to be added to Codex, it shows that as your next step. The same card lists the files, chats, and first-reply behavior. Select "Confirm and create" when ready; Codex verifies the project and starts the agreed setup without asking you to approve it again.
+
+Repeated requests keep the results already confirmed. If setup is interrupted, the skill checks what was created and continues with the missing chats. An older card cannot approve a newer plan.
+
 ![Starting with an idea: describe it, choose the chats, agree on the structure, and set up a new project](docs/diagrams/workflow.en.svg)
 
 Then use them like ordinary Codex chats: open one and give it a task.

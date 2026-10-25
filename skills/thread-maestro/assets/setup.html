@@ -1,0 +1,255 @@
+<div id="{{ROOT_ID}}">
+  <style>
+    #{{ROOT_ID}} {
+      --ts-panel: light-dark(#f5f5f5, #191919);
+      --ts-field: light-dark(#ffffff, #111111);
+      --ts-text: light-dark(#222222, #eeeeee);
+      --ts-muted: light-dark(#626262, #ababab);
+      --ts-border: light-dark(#d8d8d8, #333333);
+      --ts-selected: light-dark(#929292, #777777);
+      --ts-error: light-dark(#a52620, #ffaaa2);
+      width: 100%; color: var(--ts-text); font-family: inherit; font-size: 14px; line-height: 1.5;
+    }
+    #{{ROOT_ID}} * { box-sizing: border-box; }
+    #{{ROOT_ID}} [hidden] { display: none !important; }
+    #{{ROOT_ID}} .ts-panel { background: var(--ts-panel); border: 1px solid var(--ts-border); border-radius: 18px; padding: 20px; }
+    #{{ROOT_ID}} .ts-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    #{{ROOT_ID}} .ts-heading-icon { display: flex; align-items: center; justify-content: center; background: var(--ts-field); border-radius: 10px; width: 42px; height: 42px; flex: 0 0 42px; }
+    #{{ROOT_ID}} .ts-heading-icon svg { width: 20px; height: 20px; stroke-width: 1.7; }
+    #{{ROOT_ID}} .ts-eyebrow { color: var(--ts-muted); font-size: 12px; }
+    #{{ROOT_ID}} .ts-title { margin: 0; color: var(--ts-text); font: inherit; font-size: 16px; font-weight: 500; }
+    #{{ROOT_ID}} .ts-step-title { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; margin: 0 0 14px; }
+    #{{ROOT_ID}} .ts-step-number { width: 26px; height: 26px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; background: var(--ts-field); font-size: 13px; flex: 0 0 26px; }
+    #{{ROOT_ID}} fieldset { min-width: 0; padding: 0; margin: 0 0 20px; border: 0; }
+    #{{ROOT_ID}} legend { padding: 0; margin: 0 0 10px; font-weight: 500; font-size: 14px; }
+    #{{ROOT_ID}} .ts-options { display: grid; gap: 8px; }
+    #{{ROOT_ID}} .ts-option { display: flex; align-items: flex-start; gap: 12px; background: var(--ts-field); border: 1px solid transparent; border-radius: 12px; padding: 14px; min-height: 64px; }
+    #{{ROOT_ID}} .ts-option:has(input:checked) { border-color: var(--ts-selected); }
+    #{{ROOT_ID}} .ts-option input { margin: 4px 0 0; width: 16px; height: 16px; flex: 0 0 16px; accent-color: var(--ts-text); }
+    #{{ROOT_ID}} .ts-option-body { min-width: 0; }
+    #{{ROOT_ID}} .ts-option-title { display: block; font-weight: 500; }
+    #{{ROOT_ID}} .ts-option-detail { display: block; color: var(--ts-muted); font-size: 12px; margin-top: 3px; }
+    #{{ROOT_ID}} .ts-path { font-family: Consolas, monospace; overflow-wrap: anywhere; }
+    #{{ROOT_ID}} .ts-custom { padding: 14px 0 0; }
+    #{{ROOT_ID}} .ts-input-label { display: block; margin-bottom: 6px; font-size: 12px; color: var(--ts-muted); }
+    #{{ROOT_ID}} .ts-input { display: block; width: 100%; min-height: 44px; border: 1px solid var(--ts-border); border-radius: 9px; padding: 10px 12px; font: inherit; font-size: 16px; background: var(--ts-field); color: var(--ts-text); }
+    #{{ROOT_ID}} .ts-input:disabled { opacity: 1; color: var(--ts-muted); -webkit-text-fill-color: var(--ts-muted); background: var(--ts-panel); }
+    #{{ROOT_ID}} .ts-input[aria-invalid="true"] { border-color: var(--ts-error); }
+    #{{ROOT_ID}} .ts-hint { margin-top: 6px; color: var(--ts-muted); font-size: 12px; }
+    #{{ROOT_ID}} .ts-hint[data-invalid="true"] { color: var(--ts-error); }
+    #{{ROOT_ID}} .ts-connect { background: var(--ts-field); border: 1px solid var(--ts-selected); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+    #{{ROOT_ID}} .ts-connect .ts-step-title { margin-bottom: 10px; }
+    #{{ROOT_ID}} .ts-connect .ts-step-number { border: 1px solid var(--ts-border); }
+    #{{ROOT_ID}} .ts-connect-path { display: block; padding: 10px 0 12px; }
+    #{{ROOT_ID}} .ts-manual-note { color: var(--ts-muted); font-size: 12px; margin-bottom: 8px; }
+    #{{ROOT_ID}} .ts-task { margin: 0 0 12px; }
+    #{{ROOT_ID}} .ts-ready { display: flex; align-items: flex-start; gap: 10px; min-height: 44px; padding: 12px 0 2px; border-top: 1px solid var(--ts-border); }
+    #{{ROOT_ID}} .ts-ready input { width: 16px; height: 16px; margin: 3px 0 0; flex: 0 0 16px; accent-color: var(--ts-text); }
+    #{{ROOT_ID}} .ts-continue { min-height: 44px; width: 100%; border: 1px solid var(--ts-selected); border-radius: 9px; padding: 10px 14px; color: var(--ts-field); background: var(--ts-text); font: inherit; font-weight: 500; }
+    #{{ROOT_ID}} .ts-continue:disabled { opacity: .45; }
+    #{{ROOT_ID}} .ts-retry { margin-top: 8px; min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--ts-muted); font: inherit; text-decoration: underline; }
+    #{{ROOT_ID}} .ts-result { margin-top: 10px; font-size: 12px; color: var(--ts-muted); }
+    #{{ROOT_ID}} .ts-manual-message { width: 100%; min-height: 120px; margin-top: 8px; padding: 10px; border: 1px solid var(--ts-border); border-radius: 9px; background: var(--ts-field); color: var(--ts-text); font: inherit; resize: vertical; }
+    #{{ROOT_ID}} .ts-codex-step { border-top: 1px solid var(--ts-border); margin-top: 22px; padding-top: 20px; }
+    #{{ROOT_ID}} .ts-plan { border-collapse: collapse; width: 100%; table-layout: fixed; }
+    #{{ROOT_ID}} .ts-plan th, #{{ROOT_ID}} .ts-plan td { text-align: left; vertical-align: top; padding: 12px 0; border-bottom: 1px solid var(--ts-border); overflow-wrap: anywhere; font-weight: 400; }
+    #{{ROOT_ID}} .ts-plan thead th { font-size: 14px; font-weight: 500; padding-top: 0; }
+    #{{ROOT_ID}} .ts-plan th:first-child { width: 32%; padding-right: 16px; }
+    #{{ROOT_ID}} .ts-plan tbody th { font-weight: 500; }
+    #{{ROOT_ID}} .ts-plan tbody tr:last-child th, #{{ROOT_ID}} .ts-plan tbody tr:last-child td { border-bottom: 0; padding-bottom: 0; }
+    #{{ROOT_ID}} .ts-detail { display: block; color: var(--ts-muted); font-size: 12px; margin-top: 3px; }
+    @media (max-width: 450px) {
+      #{{ROOT_ID}} .ts-panel { padding: 14px; }
+      #{{ROOT_ID}} .ts-plan th:first-child { width: 35%; padding-right: 10px; }
+    }
+  </style>
+  <section class="ts-panel" aria-labelledby="{{ROOT_ID}}-title">
+    <header class="ts-heading">
+      <span class="ts-heading-icon" aria-hidden="true"><i data-lucide="sliders-horizontal"></i></span>
+      <div><div class="ts-eyebrow" data-label="heading">Setup plan</div><h3 id="{{ROOT_ID}}-title" class="ts-title" data-project-name></h3></div>
+    </header>
+    <section>
+      <h4 class="ts-step-title"><span class="ts-step-number">1</span><span data-label="chooseFolder">Choose a folder</span></h4>
+      <fieldset>
+        <legend data-label="folderLegend">Where to store the project</legend>
+        <div class="ts-options">
+          <label class="ts-option"><input type="radio" name="{{ROOT_ID}}-mode" value="suggested" checked><span class="ts-option-body"><span class="ts-option-title" data-label="suggested">Suggested location</span><span class="ts-option-detail ts-path" data-suggested-path></span></span></label>
+          <label class="ts-option"><input type="radio" name="{{ROOT_ID}}-mode" value="custom"><span class="ts-option-body"><span class="ts-option-title" data-label="custom">Your folder</span><span class="ts-option-detail" data-label="customHelp">Use your usual projects folder and paste the full path.</span></span></label>
+        </div>
+        <div class="ts-custom">
+          <label class="ts-input-label" for="{{ROOT_ID}}-path" data-label="pathLabel">Full folder path</label>
+          <input id="{{ROOT_ID}}-path" class="ts-input" type="text" maxlength="4096" aria-describedby="{{ROOT_ID}}-hint" autocomplete="off" spellcheck="false" disabled>
+          <div id="{{ROOT_ID}}-hint" class="ts-hint" data-path-hint></div>
+        </div>
+      </fieldset>
+      <div class="ts-connect" data-manual-section>
+        <h4 class="ts-step-title"><span class="ts-step-number">2</span><span data-label="connectProject">Add the folder to Codex</span></h4>
+        <div class="ts-manual-note" data-label="manualNote">You complete this step in the Codex app.</div>
+        <p class="ts-task" data-label="manualInstructions">Create the folder if needed, then add it as a project in Codex.</p>
+        <span class="ts-connect-path ts-path" data-connect-path></span>
+        <label class="ts-ready"><input type="checkbox" data-ready><span data-label="declaredConnected">I added this folder as a project in Codex</span></label>
+      </div>
+    </section>
+    <section class="ts-codex-step">
+      <h4 class="ts-step-title"><span class="ts-step-number" data-codex-number>3</span><span data-label="thenCodex">Then Codex</span></h4>
+      <table class="ts-plan">
+        <thead><tr><th scope="col" data-label="setting">Setting</th><th scope="col" data-label="action">What happens next</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" data-label="files">Files</th><td><span data-file-action></span><span class="ts-detail ts-path" data-selected-path></span></td></tr>
+          <tr><th scope="row" data-label="chats">Chats</th><td><span data-chat-count></span><span class="ts-detail" data-chat-names></span></td></tr>
+          <tr><th scope="row" data-label="firstReply">First reply</th><td><span data-first-reply></span><span class="ts-detail" data-label="noWork">Project work starts with your later task</span></td></tr>
+        </tbody>
+      </table>
+      <p class="ts-hint" id="{{ROOT_ID}}-confirmation" data-label="confirmationScope">Confirming approves the folder, files, chats, and first reply shown above.</p>
+      <button class="ts-continue" type="button" data-continue aria-describedby="{{ROOT_ID}}-confirmation" disabled>Confirm and create</button>
+      <div class="ts-result" data-result aria-live="polite" hidden></div>
+      <button class="ts-retry cursor-interaction" type="button" data-retry hidden>Message not sent? Enable retry</button>
+      <textarea class="ts-manual-message" data-manual-message readonly hidden></textarea>
+    </section>
+  </section>
+  <script>
+    (() => {
+      const root = document.getElementById('{{ROOT_ID}}');
+      const plan = {{SETUP_JSON}};
+      const labels = {
+        heading: 'Setup plan', chooseFolder: 'Choose a folder', folderLegend: 'Where to store the project',
+        suggested: 'Suggested location', custom: 'Your folder', customHelp: 'Use your usual projects folder and paste the full path.',
+        pathLabel: 'Full folder path', pathHelp: 'Copy the full path from your file manager.', pathPlaceholder: 'Paste a full folder path',
+        invalidPath: 'Enter a full, absolute folder path.', waitingPath: 'Enter the full folder path first.', noSuggested: 'No location has been proposed.',
+        connectProject: 'Add the folder to Codex', manualNote: 'You complete this step in the Codex app.',
+        manualInstructions: 'Create the folder if needed, then add it as a project in Codex.', declaredConnected: 'I added this folder as a project in Codex',
+        confirmCreate: 'Confirm and create', confirmManual: 'Confirm setup', opening: 'Opening the message...', thenCodex: 'Then Codex', setting: 'Setting', action: 'What happens next',
+        files: 'Files', createFiles: 'Create {files}', noFiles: 'No additional files', chats: 'Chats', chatCount: '{new} new chats',
+        firstReply: 'First reply', noWork: 'Project work starts with your later task',
+        acknowledgment: 'Brief automatic role acknowledgment, with no file reads, tools, changes, or development', inactive: 'No automatic first reply', manual: 'Prepare materials for manual chat creation; do not create chats automatically',
+        confirmationScope: 'Confirming approves the folder, files, chats, and first reply shown above.',
+        alreadyLinked: 'This project folder is already linked to Codex.', projectLabel: 'Project', folderLabel: 'Folder',
+        planLabel: 'Setup plan', totalLabel: 'Total chats', newLabel: 'New chats',
+        handoffTitle: 'Confirm project setup', handoffRequest: 'I confirm the setup shown below, including its first-reply behavior. Verify that the folder is linked to the Codex project, then perform these agreed actions without requesting the same approval again.',
+        reviewMessage: 'Check the message in the chat.', manualFallback: 'Send this message in the chat to continue.', sendFailed: 'The message could not be opened. Send this text in the chat.',
+        preview: 'Preview only. No request was sent and no project was changed.',
+        confirmationOpened: 'Confirmation opened', retry: 'Message not sent? Enable retry', requestLabel: 'Request', dependenciesLabel: 'Dependencies',
+        ...plan.labels
+      };
+      if (!plan.planId || !plan.projectName || ![3, 5, 7].includes(plan.totalChats)) throw new Error('A project, plan revision, and supported chat total are required.');
+      if (!Number.isInteger(plan.newChats) || plan.newChats < 0 || plan.newChats > plan.totalChats) throw new Error('Invalid new-chat count.');
+      const firstReplyMode = plan.firstReplyMode === 'pending' ? 'acknowledgment' : plan.firstReplyMode;
+      if (!['acknowledgment', 'inactive', 'manual'].includes(firstReplyMode)) throw new Error('A concrete first-reply mode is required before confirmation.');
+      function cleanPath(value) {
+        let text = typeof value === 'string' ? value.trim() : '';
+        if (text.length > 1 && ((text[0] === '"' && text.at(-1) === '"') || (text[0] === "'" && text.at(-1) === "'"))) text = text.slice(1, -1).trim();
+        return text;
+      }
+      const isAbsolute = value => !/[\x00-\x1f]/.test(value) && /^(?:[a-zA-Z]:[\\/]|\\\\[^\\/]+[\\/][^\\/]+|\/)/.test(value);
+      const suggestedPath = cleanPath(plan.suggestedPath);
+      const hasSuggested = isAbsolute(suggestedPath);
+      const alreadyLinked = plan.requiresManualRegistration === false;
+      if (alreadyLinked && !hasSuggested) throw new Error('A verified project requires its known absolute folder path.');
+      const find = selector => root.querySelector(selector);
+      const choices = [...root.querySelectorAll('input[type="radio"]')];
+      const input = find('.ts-input'), hint = find('[data-path-hint]'), ready = find('[data-ready]');
+      const button = find('[data-continue]'), result = find('[data-result]'), manualMessage = find('[data-manual-message]');
+      const retry = find('[data-retry]');
+      let mode = hasSuggested ? 'suggested' : 'custom', customPath = '', busy = false, handoffPending = false, requestId = '';
+      const files = Array.isArray(plan.files) ? plan.files : [];
+      const chatNames = Array.isArray(plan.chatNames) ? plan.chatNames : [];
+      const chatRoles = Array.isArray(plan.chatRoles) ? plan.chatRoles : [];
+      if (chatNames.length !== plan.totalChats || chatNames.some(name => typeof name !== 'string' || !name.trim())) throw new Error('The setup must name every chat in the accepted structure.');
+      if (chatRoles.length && (chatRoles.length !== plan.totalChats || chatRoles.some(role => typeof role !== 'string' || !role.trim()))) throw new Error('Every role must match a named chat.');
+      const firstReply = ({ acknowledgment: labels.acknowledgment, inactive: labels.inactive, manual: labels.manual })[firstReplyMode];
+      root.querySelectorAll('[data-label]').forEach(element => { element.textContent = labels[element.dataset.label] || ''; });
+      find('[data-project-name]').textContent = plan.projectName;
+      find('[data-suggested-path]').textContent = hasSuggested ? suggestedPath : labels.noSuggested;
+      find('[data-file-action]').textContent = files.length ? labels.createFiles.replace('{files}', files.join(', ')) : labels.noFiles;
+      find('[data-chat-count]').textContent = labels.chatCount.replace('{new}', String(plan.newChats)).replace('{total}', String(plan.totalChats));
+      find('[data-chat-names]').textContent = chatNames.join(' · ');
+      find('[data-first-reply]').textContent = firstReply;
+      find('[data-manual-section]').hidden = alreadyLinked;
+      find('[data-codex-number]').textContent = alreadyLinked ? '2' : '3';
+      input.placeholder = labels.pathPlaceholder;
+      manualMessage.setAttribute('aria-label', labels.manualFallback);
+      retry.textContent = labels.retry;
+
+      function selectedPath() { return mode === 'suggested' ? suggestedPath : cleanPath(customPath); }
+      function validPath() { return isAbsolute(selectedPath()); }
+      function showPath(element, value) {
+        const candidates = [hasSuggested ? suggestedPath : labels.waitingPath, isAbsolute(cleanPath(customPath)) ? cleanPath(customPath) : labels.waitingPath];
+        element.style.minHeight = '';
+        let height = 0;
+        for (const candidate of candidates) {
+          element.textContent = candidate;
+          height = Math.max(height, element.getBoundingClientRect().height);
+        }
+        element.textContent = value;
+        element.style.minHeight = `${height}px`;
+      }
+      function render() {
+        choices.forEach(choice => {
+          choice.checked = choice.value === mode;
+          choice.disabled = busy || handoffPending || alreadyLinked || (choice.value === 'suggested' && !hasSuggested);
+        });
+        input.disabled = busy || handoffPending || mode !== 'custom' || alreadyLinked;
+        const visiblePath = mode === 'custom' ? customPath : suggestedPath;
+        if (input.value !== visiblePath) input.value = visiblePath;
+        const invalid = mode === 'custom' && customPath.length > 0 && !validPath();
+        input.setAttribute('aria-invalid', String(invalid));
+        hint.dataset.invalid = String(invalid);
+        hint.textContent = invalid ? labels.invalidPath : (alreadyLinked ? labels.alreadyLinked : labels.pathHelp);
+        const displayPath = validPath() ? selectedPath() : labels.waitingPath;
+        showPath(find('[data-selected-path]'), displayPath);
+        showPath(find('[data-connect-path]'), displayPath);
+        ready.disabled = busy || handoffPending || !validPath();
+        button.disabled = busy || handoffPending || !validPath() || (!alreadyLinked && !ready.checked);
+        button.textContent = busy ? labels.opening : (handoffPending ? labels.confirmationOpened : (firstReplyMode === 'manual' ? labels.confirmManual : labels.confirmCreate));
+        retry.hidden = busy || !handoffPending;
+      }
+      function clearResult() { result.hidden = true; manualMessage.hidden = true; }
+      function save() {
+        if (window.openai?.setWidgetState) Promise.resolve(window.openai.setWidgetState({
+          modelContent: { setup_plan_id: plan.planId, storage_mode: mode, verification_required: true },
+          privateContent: { planId: plan.planId, mode, customPath, declaredConnected: ready.checked, handoffPending, requestId }
+        })).catch(() => {});
+      }
+      function restore(state) {
+        const saved = state?.privateContent;
+        if (busy || !saved || saved.planId !== plan.planId) return;
+        if (!alreadyLinked && (saved.mode === 'custom' || (saved.mode === 'suggested' && hasSuggested))) mode = saved.mode;
+        if (typeof saved.customPath === 'string') customPath = saved.customPath.slice(0, 4096);
+        ready.checked = saved.declaredConnected === true;
+        handoffPending = saved.handoffPending === true;
+        requestId = typeof saved.requestId === 'string' ? saved.requestId.slice(0, 160) : '';
+      }
+      function handoffText() {
+        const lines = [labels.handoffRequest, `${labels.planLabel}: ${plan.planId}`, `${labels.requestLabel}: ${requestId}`, `${labels.projectLabel}: ${plan.projectName}`, `${labels.folderLabel}: ${selectedPath()}`, `${labels.totalLabel}: ${plan.totalChats}`, `${labels.newLabel}: ${plan.newChats}`, `${labels.chats}: ${chatNames.map((name, i) => chatRoles[i] ? `${name} (${chatRoles[i]})` : name).join('; ')}`, `${labels.files}: ${files.length ? files.join(', ') : labels.noFiles}`, `${labels.firstReply}: ${firstReply}`];
+        if (Array.isArray(plan.chatDependencies) && plan.chatDependencies.length) lines.push(`${labels.dependenciesLabel}: ${plan.chatDependencies.join('; ')}`);
+        return lines.join('\n');
+      }
+      function fallback(message, failed = false) {
+        result.textContent = failed ? labels.sendFailed : labels.manualFallback;
+        result.hidden = false; manualMessage.value = message; manualMessage.hidden = false;
+      }
+      choices.forEach(choice => choice.addEventListener('change', () => { mode = choice.value; requestId = ''; ready.checked = false; clearResult(); render(); save(); }));
+      input.addEventListener('input', () => { customPath = input.value; requestId = ''; ready.checked = false; clearResult(); render(); save(); });
+      ready.addEventListener('change', () => { clearResult(); render(); save(); });
+      retry.addEventListener('click', () => { handoffPending = false; clearResult(); render(); save(); });
+      button.addEventListener('click', async () => {
+        if (button.disabled) return;
+        clearResult();
+        if (plan.previewOnly === true) { result.textContent = labels.preview; result.hidden = false; return; }
+        if (!requestId) requestId = globalThis.crypto?.randomUUID?.() || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+        const message = handoffText();
+        if (typeof window.openai?.sendFollowUpMessage !== 'function') { fallback(message); return; }
+        busy = true; render();
+        try {
+          await window.openai.sendFollowUpMessage({ prompt: message, title: labels.handoffTitle });
+          handoffPending = true;
+          result.textContent = labels.reviewMessage; result.hidden = false;
+        } catch { fallback(message, true); }
+        finally { busy = false; render(); save(); }
+      });
+      restore(window.openai?.widgetState); render();
+      window.addEventListener('resize', render);
+      window.addEventListener('openai:set_globals', event => { restore(event.detail?.globals?.widgetState); render(); });
+    })();
+  </script>
+</div>
