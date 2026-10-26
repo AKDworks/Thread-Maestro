@@ -1,6 +1,6 @@
 ---
 name: thread-maestro
-description: "Organize a new idea or existing project into focused Codex chats with a shared folder and manual task assignment. Use only when explicitly invoking Thread Maestro or $thread-maestro to propose, approve, and create a chat structure. Ordinary development and authoring the skill itself do not start chat setup."
+description: "Organize new project ideas into focused Codex chats with visual role cards. Use when the user describes an app or project they want to start, or asks to split an existing project across chats. Routine coding tasks and authoring this skill do not start chat setup."
 license: "MIT"
 ---
 
@@ -8,9 +8,21 @@ license: "MIT"
 
 Help the user choose a chat structure, approve it, and prepare the workspace using available features. Chats are independent user conversations in the app. The user assigns tasks and decides when to move between stages.
 
+## First response: automatic and explicit use
+
+Automatic selection changes how this skill is discovered, not its output. Follow the same card workflow whether or not the user mentioned Thread Maestro.
+
+Before answering with a structure, read [references/proposals.md](references/proposals.md) and the available host's visualization contract. Read large instructions separately or in bounded ranges; do not combine the full visual contract, asset source, and runtime guide into one output that may be truncated. Build the approved card layout with [scripts/render_proposal.py](scripts/render_proposal.py), which fills the bundled template without rewriting its HTML. No creation tools are needed to draft it.
+
+The reply contains one short recommendation, the actual embedded card fragment, and one question about names or roles. Reading the asset is not rendering it. A table is not an equivalent successful result when inline cards and a writable task location are available. Use a table only if the host genuinely lacks the visual facility or an allowed output location, or if the user asks for text. Verify that limitation rather than assuming it because the trigger was automatic.
+
+This first question is design feedback, not an execution approval request. Do not cite the skill, link its instructions, quote its description, or add "this is only a proposal" to justify showing the structure. Creation consent belongs to the later complete setup card. Keep any disclosure actually required by higher-priority instructions at that later action gate.
+
 ## Invocation boundaries
 
-- Start only when the user explicitly invokes this skill. Receiving a document, discussing the skill, or creating the skill does not authorize project chat creation.
+- When the user describes a new project they want to start, propose its chat structure without requiring a skill mention. Also use this workflow when asked to organize an existing project's chats, or when explicitly invoked as Thread Maestro or `$thread-maestro`.
+- Routine fixes, individual features, questions, and editing or discussing this skill do not start chat setup. Honor a request to stay in one chat or skip organization. Do not repeat initial setup in an already organized project unless the user asks to revise it.
+- Automatic selection starts the proposal, not creation. Receiving a document or describing an idea does not approve chats, files, or project changes.
 - A reply to a clarification or approval request continues the current setup; another `$thread-maestro` call is unnecessary. Retain the agreed plan and completed steps across replies.
 - Separate analysis, approval of a concrete plan, and creation. Workspace setup must not start product development.
 - Do not substitute subagents, copies of the source conversation, background jobs, or automatic task dispatch for user chats. Do not create schedules or continuation loops.
@@ -24,7 +36,7 @@ Use ordinary, direct language at every stage, including setup and connection che
 
 ## 1. Establish the starting point
 
-Use the user's description and known preferences. Discover project and chat tools and read their current schemas. Check [references/runtime.md](references/runtime.md) before promising automatic setup.
+Use the user's description and known preferences. For a fresh idea, draft the roles first; defer project registration checks, chat searches, and startup-mode details until setup. Discover the app tools and read [references/runtime.md](references/runtime.md) before promising or performing automatic creation.
 
 **Starting from an idea:** an idea description is enough. Propose or clarify the name and storage location; do not require a prepared folder or repository. Discuss the structure without creating a folder, project, or chats until the plan is approved. Do not invent an absolute path when the location is unknown.
 
@@ -58,7 +70,7 @@ Splitting topics can reduce irrelevant context, but does not guarantee token, us
 
 ## 3. Confirm the concrete plan
 
-Ask the user to approve the displayed structure before creation. A general request to organize a project does not approve proposed titles, counts, and startup behavior. Do not ask again when this specific plan is already approved. Agree on material changes to composition, working folder, or startup mode before carrying them out.
+Discuss the roles and layout as design choices. The first structure question does not authorize creation and must not be presented as a tool-approval gate. Obtain creation consent once through the complete setup card, covering the folder, titles, files, and startup behavior. A general request to organize a project does not approve unknown settings. Do not ask again when that concrete setup is already approved. Agree on material changes before carrying them out.
 
 If creation starts a first turn, show that behavior in the setup card before its final confirmation button: a brief automatic role acknowledgment without extra file reads, tools, commands, changes, or development. The button confirms this behavior together with the displayed folder, files, and chats. Do not leave startup consent pending until after the folder is connected. Structure selection alone is not this final confirmation.
 

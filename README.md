@@ -6,13 +6,13 @@
 
 **English** · [Русский](README.ru.md)
 
-Thread Maestro helps you start a new project in Codex. Describe your idea, discuss the work with the skill, and choose which topics would benefit from their own chats.
+When starting a project, users often forget to create separate chats for different tasks. All the work ends up in one conversation, mixing requirements, decisions, and discussions. As irrelevant context builds up, the quality of AI responses can deteriorate.
 
-An idea is enough to get started. The skill helps prepare the project folder and chats for the work ahead. The chats have separate conversation histories and share the project files.
+Thread Maestro handles this organization: it creates chats tailored to the project's tasks after approval. This makes the project easier to navigate, while separating context helps save tokens and maintain the quality of AI responses.
 
 ## Starting a project
 
-Invoke the skill and describe what you want to build. Codex recommends 3, 5, or 7 chats and shows them as cards: the main chat above a grid of the others. Each card has an icon, a title, and a short purpose. If that format is unavailable, it uses a plain table.
+Describe the new project you want to build. Codex can select Thread Maestro automatically, recommend 3, 5, or 7 chats, and show them as cards: the main chat above a grid of the others. Each card has an icon, a title, and a short purpose. If that format is unavailable, it uses a plain table.
 
 You can choose another of these three layouts. The skill updates the cards, then helps set up the project after approval. Seven is the largest layout supported by this skill.
 
@@ -45,13 +45,13 @@ The `~` symbol means your user home folder. If the skill does not appear, restar
 
 ## Usage
 
-In a chat, enter:
+Describe your new project in a chat. Automatic selection is enabled, so you do not have to name the skill. To select it explicitly, enter:
 
 ```text
 $thread-maestro
 ```
 
-Then describe your idea. If you have already described it in the conversation, the skill uses that context.
+If you have already described your idea in the conversation, the skill uses that context. Automatic selection depends on how well the request matches the skill; an explicit invocation remains available. Both modes propose the plan before creating anything.
 
 ## Existing projects
 

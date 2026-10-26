@@ -2,4 +2,4 @@ interface:
   display_name: "Thread Maestro"
   short_description: "Organize new projects into focused Codex chats"
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true
